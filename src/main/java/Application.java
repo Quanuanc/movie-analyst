@@ -1,13 +1,15 @@
+import entity.Movie;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import util.Util;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class Main {
+public class Application {
 
     private static final Logger log = LogManager.getLogger("Main");
 
@@ -15,6 +17,8 @@ public class Main {
     private static final String infoOutputDir = "infoOutputDir";
 
     public static void main(String[] args) {
+        List<Movie> movies = new ArrayList<>();
+
         Properties appProps = Util.loadAppProperties();
         assert appProps != null;
 
@@ -28,13 +32,16 @@ public class Main {
 
         Path movieDirPath = Paths.get(movieDirValue);
 
-        List<String> movieNames = Util.getMovieOriginName(movieDirPath);
+        List<String> fileNames = Util.getFileName(movieDirPath);
 
-        log.debug("movie origin names: ");
-        for (String originName : movieNames) {
-            log.debug("{}", originName);
+        log.debug("movie file names: ");
+        for (String fileName : fileNames) {
+            Movie movie = new Movie();
+            movie.setFileName(fileName);
+            movies.add(movie);
+            log.debug(movie.getFileName());
         }
 
-        log.info("movie count: {}", movieNames.size());
+        log.info("movie count: {}", movies.size());
     }
 }

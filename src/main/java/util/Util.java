@@ -1,3 +1,5 @@
+package util;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +16,7 @@ import java.util.function.Function;
 
 public class Util {
 
-    private static final Logger log = LogManager.getLogger("Util");
+    private static final Logger log = LogManager.getLogger("util.Util");
 
     public static Properties loadAppProperties() {
         InputStream inputStream = Util.class.getClassLoader().getResourceAsStream("config/app.properties");
@@ -26,14 +28,14 @@ public class Util {
         try {
             appProps.load(inputStreamReader);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.warn("exception: {}", e.toString());
             return null;
         }
 
         return appProps;
     }
 
-    public static List<String> getMovieOriginName(Path movieDirPath) {
+    public static List<String> getFileName(Path movieDirPath) {
         List<String> movieNames = new ArrayList<>();
 
         try {
@@ -47,4 +49,6 @@ public class Util {
 
         return movieNames;
     }
+
+
 }
