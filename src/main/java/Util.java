@@ -1,3 +1,6 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -10,6 +13,8 @@ import java.util.Properties;
 import java.util.function.Function;
 
 public class Util {
+
+    private static final Logger log = LogManager.getLogger("Util");
 
     public static Properties loadAppProperties() {
         InputStream inputStream = Util.class.getClassLoader().getResourceAsStream("config/app.properties");
@@ -34,9 +39,10 @@ public class Util {
         try {
             Files.list(movieDirPath)
                     .map((Function<Path, Object>) Path::getFileName)
+                    .filter(name -> !((Path) name).endsWith(".DS_Store"))
                     .forEach(name -> movieNames.add(String.valueOf(name)));
         } catch (IOException e) {
-            e.printStackTrace();
+            log.warn("exception: {}", e.toString());
         }
 
         return movieNames;

@@ -14,7 +14,7 @@ public class Main {
     private static final String movieDir = "movieDir";
     private static final String infoOutputDir = "infoOutputDir";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Properties appProps = Util.loadAppProperties();
         assert appProps != null;
 
@@ -34,5 +34,7 @@ public class Main {
         for (String originName : movieNames) {
             log.debug("{}", originName);
         }
+
+        log.info("movie count: {}", movieNames.size());
     }
 }
