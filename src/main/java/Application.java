@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class Application {
 
-    private static final Logger log = LogManager.getLogger("Main");
+    private static final Logger log = LogManager.getLogger(Application.class);
 
     private static final String movieDir = "movieDir";
     private static final String infoOutputDir = "infoOutputDir";

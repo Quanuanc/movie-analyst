@@ -16,7 +16,7 @@ import java.util.function.Function;
 
 public class Util {
 
-    private static final Logger log = LogManager.getLogger("util.Util");
+    private static final Logger log = LogManager.getLogger(Util.class);
 
     public static Properties loadAppProperties() {
         InputStream inputStream = Util.class.getClassLoader().getResourceAsStream("config/app.properties");
