@@ -1,6 +1,7 @@
 import entity.Movie;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import util.MovieUtil;
 import util.Util;
 
 import java.nio.file.Path;
@@ -38,10 +39,13 @@ public class Application {
         for (String fileName : fileNames) {
             Movie movie = new Movie();
             movie.setFileName(fileName);
+            movie.setEnName(MovieUtil.getNameBeforeYear(fileName));
             movies.add(movie);
-            log.debug(movie.getFileName());
+            log.debug(movie.getEnName());
         }
 
         log.info("movie count: {}", movies.size());
+
+
     }
 }

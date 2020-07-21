@@ -36,18 +36,18 @@ public class Util {
     }
 
     public static List<String> getFileName(Path movieDirPath) {
-        List<String> movieNames = new ArrayList<>();
+        List<String> fileNames = new ArrayList<>();
 
         try {
             Files.list(movieDirPath)
                     .map((Function<Path, Object>) Path::getFileName)
                     .filter(name -> !((Path) name).endsWith(".DS_Store"))
-                    .forEach(name -> movieNames.add(String.valueOf(name)));
+                    .forEach(name -> fileNames.add(String.valueOf(name)));
         } catch (IOException e) {
             log.warn("exception: {}", e.toString());
         }
 
-        return movieNames;
+        return fileNames;
     }
 
 
